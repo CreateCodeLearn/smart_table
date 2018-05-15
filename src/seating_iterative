@@ -3,17 +3,21 @@ import pandas as pd
 import numpy as np
 
 # read in test data and transform into an np array for later calculations
-guest_matrix =np.array(pd.read_csv("../data/test_guest.csv", sep=";",usecols= [1,2,3,4,5,6,7,8,9,10]))
+guest_matrix =np.array(pd.read_csv("../../data/test_guest.csv", sep=";",usecols= [1,2,3,4,5,6,7,8,9,10]))
 
 # initial values for number of people, seats per table, iterations
 attending = 10
 seats_per_table = 5
-iters = 5
+iters = 50
 
-def seating_iterative():
+#def seating_iterative(attending, seats_per_table, iters, guest_matrix):
 
-# create binary numpy array with given values
+while attending > 0:
+    # create binary numpy array with given values
     arr_bin = np.array([1]*seats_per_table + [0]*(attending - seats_per_table) )
+
+    # for testing only
+    np.random.shuffle(arr_bin)
 
     # initialise best fit and best array for comparison
     arr_best = np.array(arr_bin)
@@ -40,10 +44,12 @@ def seating_iterative():
     # deleting seated guests from guest matrix
     guest_matrix = np.delete(guest_matrix, i_del, 0)
     guest_matrix = np.delete(guest_matrix, i_del, 1)
+    print(guest_matrix)
 
-    # minimize number of attending
+    # minimise attending
     attending -= seats_per_table
 
+
+
 # calling seating algorithm until all guests are seated
-while attending > 0:
-    seating_iterative()
+#while attending > 0:
