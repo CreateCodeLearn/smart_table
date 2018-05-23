@@ -100,3 +100,4 @@ ENV/
 # mypy
 .mypy_cache/
 notebooks/.DS_Store
+notebooks/experimental/.DS_Store
