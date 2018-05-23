@@ -129,3 +129,6 @@ while attending > 0:
     # minimise attending
     attending -= seats_per_table
     tablenumber += 1
+
+def SaveToCSV():
+    seating.to_csv("Seating.csv")
