@@ -14,26 +14,26 @@ iters = 50
 
 while attending > 0:
     # create binary numpy array with given values
-    arr_bin = np.array([1]*seats_per_table + [0]*(attending - seats_per_table) )
+    arr = np.array([1]*seats_per_table + [0]*(attending - seats_per_table) )
 
     # for testing only
-    np.random.shuffle(arr_bin)
+    np.random.shuffle(arr)
 
     # initialise best fit and best array for comparison
-    arr_best = np.array(arr_bin)
+    arr_best = np.array(arr)
     fit_best = guest_matrix.dot(arr_best).dot(arr_best)
 
     # while loop for seating iteratively
     i = 0
     while i < iters:
-        np.random.shuffle(arr_bin)
-        fit_new = guest_matrix.dot(arr_bin).dot(arr_bin)
+        np.random.shuffle(arr)
+        fit_new = guest_matrix.dot(arr).dot(arr)
 
         if fit_new > fit_best:
-            arr_best = np.array(arr_bin)
+            arr_best = np.array(arr)
             fit_best = fit_new
     #print statement for testing only
-        print (arr_best, "; ", fit_best, "; ",arr_bin, "; ",fit_new)
+        print (arr_best, "; ", fit_best, "; ",arr, "; ",fit_new)
         i += 1
 
     # determine indices of rows to be deleted
